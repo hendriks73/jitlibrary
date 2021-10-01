@@ -12,6 +12,12 @@
     <description>Java classes for the iTunes Library Framework</description>
     <url>https://www.tagtraum.com/</url>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>

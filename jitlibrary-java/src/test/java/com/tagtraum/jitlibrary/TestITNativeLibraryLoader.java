@@ -69,5 +69,11 @@ public class TestITNativeLibraryLoader {
     public void testDecodeURLNegativeValue() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> decodeURL("someString%-1"));
     }
+
+    @Test
+    public void testVersion() {
+        final String version = ITNativeLibraryLoader.VERSION;
+        assertNotEquals("unknown", version);
+    }
 }
 
