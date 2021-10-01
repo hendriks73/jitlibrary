@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.tagtraum</groupId>
         <artifactId>jitlibrary-parent</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>jitlibrary-java</artifactId>
@@ -12,15 +12,17 @@
     <description>Java classes for the iTunes Library Framework</description>
     <url>https://www.tagtraum.com/</url>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-site-plugin</artifactId>
                 <configuration>
-                    <forkCount>1</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <!-- necessary? -->
-                    <argLine>-Dsun.nio.fs.ensureAccurateMetadata=true</argLine>
+                    <generateReports>false</generateReports>
                 </configuration>
             </plugin>
         </plugins>

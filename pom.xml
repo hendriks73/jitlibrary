@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tagtraum</groupId>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <artifactId>jitlibrary-parent</artifactId>
     <packaging>pom</packaging>
     <name>jITLibrary Parent POM</name>
@@ -42,12 +42,6 @@
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
@@ -254,15 +248,15 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/hendriks73/japlscript.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/hendriks73/japlscript.git</developerConnection>
-        <url>https://github.com/hendriks73/japlscript/tree/main</url>
+        <connection>scm:git:git://github.com/hendriks73/jitlibrary.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hendriks73/jitlibrary.git</developerConnection>
+        <url>https://github.com/hendriks73/jitlibrary/tree/main</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/hendriks73/japlscript/issues</url>
+        <url>https://github.com/hendriks73/jitlibrary/issues</url>
     </issueManagement>
 
     <properties>

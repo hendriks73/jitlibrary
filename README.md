@@ -58,7 +58,7 @@ import com.tagtraum.jitlibrary.*;
 
 public class ListAllMediaItems {
 
-    public static void main(final String args) {
+    public static void main(final String args) throws Exception {
         // get library (blocking call)
         final ITLibrary itLibrary = ITLibrary.getInstance(true);
         // get the natively backed collection
