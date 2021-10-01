@@ -37,11 +37,19 @@ You can install it via the following dependency:
 </dependencies>
 ```
 
+## Java Module
+
+jITLibrary is shipped as a Java module
+(see [JPMS](https://en.wikipedia.org/wiki/Java_Platform_Module_System))
+with the name `tagtraum.jitlibrary`.
+
 
 ## Usage
 
-Once you have obtained an `ITLibrary` instance you may access its
-`ITMediaItem`s and `ITPlaylist`s as you like.
+[Reference](https://hendriks73.github.io/japlscript/com/tagtraum/japlscript/Reference.html)
+
+Once you have obtained an [ITLibrary](https://hendriks73.github.io/jitlibrary/com/tagtraum/jitlibrary/ITLibrary.html)
+instance you may access its `ITMediaItem`s and `ITPlaylist`s as you like.
 
 Example:
 
@@ -79,27 +87,23 @@ that this library is not necessarily thread-safe.
 jITLibrary uses `java.util.logging`.
 
 
-## Java Module
-
-jITLibrary is shipped as a Java module
-(see [JPMS](https://en.wikipedia.org/wiki/Java_Platform_Module_System))
-with the name `tagtraum.jitlibrary`.
-
-
 ## Known Shortcomings
 
-Apple's code signing requirement sucks.
+- Apple's code signing requirement sucks.
+- thread safety may be an issue
+- reloading data after changes my not be quick
 
 
 ## API
 
-You can find the complete [API here](https://hendriks73.github.io/jitlibrary/).
+You can find the complete
+[API here](https://hendriks73.github.io/jitlibrary/com/tagtraum/jitlibrary/package-summary.html).
 
 
 ## Additional Resources
 
 - [iTunes Library Framework](https://developer.apple.com/documentation/ituneslibrary/itlibrary)
+- [Apple's Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html)
 - [Obstmusic](https://github.com/hendriks73/obstmusic)
 - [Obstunes](https://github.com/hendriks73/obstunes)
-- [Apple's Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html)
  
