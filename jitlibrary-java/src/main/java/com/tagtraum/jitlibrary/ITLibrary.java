@@ -89,10 +89,21 @@ public class ITLibrary {
         return instance;
     }
 
+    /**
+     * Creates a new instance with version "1.0". Prefer {@link #getInstance(boolean)}
+     *
+     * @throws Exception should something go wrong.
+     */
     public ITLibrary() throws Exception {
         this("1.0");
     }
 
+    /**
+     * Creates a new instance with the given version. Prefer {@link #getInstance(boolean)}
+     *
+     * @param version version string to pass to the native library.
+     * @throws Exception should something go wrong.
+     */
     public ITLibrary(final String version) throws Exception {
         final long start = System.currentTimeMillis();
         if (LOG.isLoggable(Level.FINE)) {
@@ -112,17 +123,44 @@ public class ITLibrary {
 
     private native String _getMusicFolderLocation();
 
+    /**
+     * The location of the iTunes music folder.
+     * 
+     * @return The location of the iTunes music folder.
+     * @throws URISyntaxException if the location cannot be converted into
+     *  a valid {@link URI}
+     */
     public URI getMusicFolderLocation() throws URISyntaxException {
         final String loc = _getMusicFolderLocation();
         return loc == null ? null : new URI(loc);
     }
 
+    /**
+     * A Boolean value indicating whether to show content rating labels.
+     *
+     * @return A Boolean value indicating whether to show content rating labels.
+     */
     public native boolean isShowContentRating();
 
+    /**
+     * The version of iTunes that created or modified the iTunes library you’re accessing.
+     *
+     * @return The version of iTunes that created or modified the iTunes library you’re accessing.
+     */
     public native String getApplicationVersion();
 
+    /**
+     * The minor version number of the API the iTunesLibrary framework exposes.
+     *
+     * @return The minor version number of the API the iTunesLibrary framework exposes.
+     */
     public native int getAPIMinorVersion();
 
+    /**
+     * The major version number of the API the iTunesLibrary framework exposes.
+     *
+     * @return The major version number of the API the iTunesLibrary framework exposes.
+     */
     public native int getAPIMajorVersion();
 
     /**
@@ -136,7 +174,7 @@ public class ITLibrary {
     /**
      * Reload data.
      *
-     * @param force if true disregard that we may have just reloaded data.
+     * @param force if true, disregard that we may have just reloaded data.
      */
     public synchronized boolean reloadData(final boolean force) {
         final long start = System.currentTimeMillis();
@@ -176,6 +214,12 @@ public class ITLibrary {
 
     private native void _unloadData();
 
+    /**
+     * Retrieves the artwork from a media file that may or may not be in the iTunes library.
+     *
+     * @param uri uri
+     * @return Retrieves the artwork from a media file that may or may not be in the iTunes library.
+     */
     public ITLibArtwork artworkForMediaFile(final URI uri) {
         final long pointer = _artworkForMediaFile(uri.toString());
         return pointer == 0 ? null : new ITLibArtwork(pointer);
@@ -183,12 +227,22 @@ public class ITLibrary {
 
     private native long _artworkForMediaFile(final String uri);
 
+    /**
+     * All the media items (tracks) in the iTunes library.
+     *
+     * @return All the media items (tracks) in the iTunes library.
+     */
     public ITLibMediaItems getAllMediaItems() {
         return new ITLibMediaItems(_getAllMediaItems());
     }
 
     private native long _getAllMediaItems();
 
+    /**
+     * All the playlists in the iTunes library.
+     *
+     * @return All the playlists in the iTunes library.
+     */
     public ITLibPlaylists getAllPlaylists() {
         return new ITLibPlaylists(_getAllPlaylists());
     }
@@ -197,6 +251,12 @@ public class ITLibrary {
 
     private native long _getLastItemModification();
 
+    /**
+     * Media items that have changed since the given date.
+     *
+     * @param date date
+     * @return Media items that have changed since the given date.
+     */
     public ITLibMediaItems getMediaItemsChangedSince(final Date date) {
         return new ITLibMediaItems(_getMediaItemsChangedSince(date.getTime()));
     }
@@ -220,7 +280,11 @@ public class ITLibrary {
 
     private native long _getMediaItem(final long id);
 
-
+    /**
+     * Get all media items' persistent ids.
+     *
+     * @return all media items' persistent ids
+     */
     public native long[] getMediaItemIds();
 
     /**

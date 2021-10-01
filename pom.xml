@@ -254,15 +254,15 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/hendriks73/japlscript.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/hendriks73/japlscript.git</developerConnection>
-        <url>https://github.com/hendriks73/japlscript/tree/main</url>
+        <connection>scm:git:git://github.com/hendriks73/jitlibrary.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hendriks73/jitlibrary.git</developerConnection>
+        <url>https://github.com/hendriks73/jitlibrary/tree/main</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/hendriks73/japlscript/issues</url>
+        <url>https://github.com/hendriks73/jitlibrary/issues</url>
     </issueManagement>
 
     <properties>
