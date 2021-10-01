@@ -14,13 +14,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-site-plugin</artifactId>
                 <configuration>
-                    <forkCount>1</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <!-- necessary? -->
-                    <argLine>-Dsun.nio.fs.ensureAccurateMetadata=true</argLine>
+                    <generateReports>false</generateReports>
                 </configuration>
             </plugin>
         </plugins>
