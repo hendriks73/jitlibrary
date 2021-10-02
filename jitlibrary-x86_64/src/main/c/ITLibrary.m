@@ -27,7 +27,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_init
         [library retain];
         return (jlong)library;
     } else {
-        jclass klass = (*env)->FindClass(env, "com/tagtraum/itlibrary/ITLibException");
+        jclass klass = (*env)->FindClass(env, "com/tagtraum/jitlibrary/ITLibException");
         if (klass != NULL) {
             NSString* description = [error localizedDescription];
             NSLog(@"Failed to init library: %@\n%@", description, error);
@@ -208,7 +208,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getLastItemModi
         (JNIEnv *env, jobject instance) {
     jlong time = 0;
     NSDate *latest = nil;
-    jclass klass = (*env)->FindClass(env, "com/tagtraum/itlibrary/ITLibException");
+    jclass klass = (*env)->FindClass(env, "com/tagtraum/jitlibrary/ITLibException");
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
     if (!library) {
         if (klass != NULL) {
@@ -305,7 +305,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getPlaylistHash
         (JNIEnv *env, jobject instance) {
     jint hash = 0;
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    jclass klass = (*env)->FindClass(env, "com/tagtraum/itlibrary/ITLibException");
+    jclass klass = (*env)->FindClass(env, "com/tagtraum/jitlibrary/ITLibException");
     if (!library) {
         if (klass != NULL) {
             (*env)->ThrowNew(env, klass, "Failed to compute playlist hash. No library.");
