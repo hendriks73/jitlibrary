@@ -7,11 +7,18 @@
 package com.tagtraum.jitlibrary;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.tagtraum.jitlibrary.ITNativeLibraryLoader.decodeURL;
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,6 +30,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  */
 public class TestITNativeLibraryLoader {
+
+    @BeforeAll
+    public static void removeOldNativeLibs() throws IOException {
+        final Path path = Paths.get(System.getProperty("java.io.tmpdir"));
+        try (final Stream<Path> walk = Files.walk(path, 1)) {
+            final List<Path> dylibs = walk.filter(p -> p.getFileName().toString().endsWith(".dylib")).collect(Collectors.toList());
+            for (final Path p : dylibs)
+                Files.deleteIfExists(p);
+        }
+    }
 
     @Test
     public void testFindNonExistingFile() {
