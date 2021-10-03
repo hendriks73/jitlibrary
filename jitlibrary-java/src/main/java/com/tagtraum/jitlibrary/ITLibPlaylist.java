@@ -18,13 +18,12 @@ import static java.util.logging.Level.SEVERE;
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  * @see <a href="https://developer.apple.com/documentation/ituneslibrary/itlibplaylist">Apple ITLibPlayList</a>
  */
-public class ITLibPlaylist {
+public class ITLibPlaylist extends ReferenceCountedObject {
 
     private static final Logger LOG = Logger.getLogger(ITLibPlaylist.class.getName());
-    private final long pointer;
 
     public ITLibPlaylist(final long pointer) {
-        this.pointer = pointer;
+        super(pointer);
     }
 
     public native long getId();

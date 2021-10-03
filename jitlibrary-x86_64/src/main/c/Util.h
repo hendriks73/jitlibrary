@@ -1,3 +1,12 @@
+/*
+ * =================================================
+ * Copyright 2006-2019 tagtraum industries incorporated
+ * All rights reserved.
+ * =================================================
+ *
+ * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
+ */
+
 #include <jni.h>
 #include <AppKit/AppKit.h>
 #include <iTunesLibrary/ITLibMediaItem.h>
@@ -18,6 +27,8 @@ jlong getPointer(JNIEnv *, jobject);
 jlong getPersistentId(ITLibMediaEntity *);
 
 jlong toPersistentId(NSNumber *);
+
+void throwITLibException(JNIEnv *, NSString *, NSObject *);
 
 #ifdef __cplusplus
 }

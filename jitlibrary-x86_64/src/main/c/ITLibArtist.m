@@ -37,27 +37,3 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getSortName
     ITLibArtist *artist = (ITLibArtist *) getPointer(env, instance);
     return createJavaStringFromNSString(env, artist.sortName);
 }
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArtist
- * Method:    _release
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist__1release
-        (JNIEnv *env, jobject instance) {
-    ITLibArtist *artist = (ITLibArtist *) getPointer(env, instance);
-    if (artist != 0) {
-        [artist release];
-    }
-}
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArtist
- * Method:    _retain
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist__1retain
-        (JNIEnv *env, jobject instance) {
-    ITLibArtist *artist = (ITLibArtist *) getPointer(env, instance);
-    [artist retain];
-}

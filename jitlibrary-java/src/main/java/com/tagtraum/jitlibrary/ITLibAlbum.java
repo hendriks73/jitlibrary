@@ -12,12 +12,10 @@ package com.tagtraum.jitlibrary;
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  * @see <a href="https://developer.apple.com/documentation/ituneslibrary/itlibalbum">Apple ITLibAlbum</a>
  */
-public class ITLibAlbum {
-
-    private long pointer;
+public class ITLibAlbum extends ReferenceCountedObject {
 
     public ITLibAlbum(final long pointer) {
-        this.pointer = pointer;
+        super(pointer);
     }
 
     public native long getId();
@@ -47,22 +45,5 @@ public class ITLibAlbum {
     public native String getAlbumArtist();
 
     public native String getSortAlbumArtist();
-
-    private native void _release();
-
-    private native void _retain();
-
-    public void release() {
-        if (pointer != 0L) {
-            _release();
-            pointer = 0L;
-        }
-    }
-
-    public void retain() {
-        if (pointer != 0L) {
-            _retain();
-        }
-    }
 
 }
