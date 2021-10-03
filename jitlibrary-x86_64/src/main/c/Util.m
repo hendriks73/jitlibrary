@@ -1,4 +1,16 @@
+/*
+ * =================================================
+ * Copyright 2006-2019 tagtraum industries incorporated
+ * All rights reserved.
+ * =================================================
+ *
+ * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
+ */
+
 #import "Util.h"
+
+static const char IT_LIB_EXCEPTION_CLASS[] = "com/tagtraum/jitlibrary/ITLibException";
+static const char REFERENCE_COUNTED_OBJECT_CLASS[] = "com/tagtraum/jitlibrary/ReferenceCountedObject";
 
 jstring createJavaStringFromNSString(JNIEnv *env, NSString *nativeStr) {
     if (nativeStr == NULL) {
@@ -23,7 +35,8 @@ NSString* createNSStringFromJavaString(JNIEnv *env, jstring javaString) {
 
 jlong getPointer(JNIEnv *env, jobject instance) {
     // get pointer from instance
-    jclass instanceClass = (*env)->GetObjectClass(env, instance);
+    // TODO: cache field id, instead of looking it up again and again...
+    jclass instanceClass = (*env)->FindClass(env, REFERENCE_COUNTED_OBJECT_CLASS);
     jfieldID f = (*env)->GetFieldID(env, instanceClass, "pointer", "J");
     return (*env)->GetLongField(env, instance, f);
 }
@@ -42,6 +55,14 @@ jlong toPersistentId(NSNumber *number) {
         return 0;
     } else {
         return (jlong) (nsui + LONG_MIN);
+    }
+}
+
+void throwITLibException(JNIEnv *env, NSString *description, NSObject *error) {
+    jclass klass = (*env)->FindClass(env, IT_LIB_EXCEPTION_CLASS);
+    if (klass != NULL) {
+        NSLog(@"%@\n%@", description, error);
+        (*env)->ThrowNew(env, klass, [description UTF8String]);
     }
 }
 

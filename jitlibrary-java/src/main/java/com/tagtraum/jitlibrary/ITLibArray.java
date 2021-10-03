@@ -11,13 +11,12 @@ package com.tagtraum.jitlibrary;
  *
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  */
-public class ITLibArray {
+public class ITLibArray extends ReferenceCountedObject {
 
-    private long pointer;
     private final int size;
 
     public ITLibArray(final long pointer) {
-        this.pointer = pointer;
+        super(pointer);
         if (pointer != 0L) {
             this.size = _size();
         } else {
@@ -52,23 +51,6 @@ public class ITLibArray {
             throw new IndexOutOfBoundsException("Index must be less than size (" + this.size + "): " + index);
         }
         return _get(index);
-    }
-
-    private native void _release();
-
-    private native void _retain();
-
-    public void release() {
-        if (pointer != 0L) {
-            _release();
-            pointer = 0L;
-        }
-    }
-
-    public void retain() {
-        if (pointer != 0L) {
-            _retain();
-        }
     }
 
 }

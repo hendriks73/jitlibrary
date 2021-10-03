@@ -28,7 +28,7 @@ import static java.util.logging.Level.SEVERE;
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  * @see <a href="https://developer.apple.com/documentation/ituneslibrary/itlibrary">Apple ITLibrary</a>
  */
-public class ITLibrary {
+public class ITLibrary extends ReferenceCountedObject {
 
     private static final Logger LOG = Logger.getLogger(ITLibrary.class.getName());
 
@@ -46,7 +46,6 @@ public class ITLibrary {
     private static boolean loading;
     private static final Object loadingLock = new Object();
     private long lastReloadTime;
-    private long pointer; // is accessed from native code
 
 
     private static synchronized ITLibrary getInstance() throws Exception {
@@ -105,21 +104,27 @@ public class ITLibrary {
      * @throws Exception should something go wrong.
      */
     public ITLibrary(final String version) throws Exception {
+        super(init(version));
+        this.lastReloadTime = System.currentTimeMillis();
+    }
+
+    private static long init(final String version) throws Exception {
+        long pointer;
         final long start = System.currentTimeMillis();
         if (LOG.isLoggable(Level.FINE)) {
             LOG.fine("Loading ITLibrary...");
         }
-        pointer = init(version);
-        this.lastReloadTime = System.currentTimeMillis();
+        pointer = _init(version);
         if (pointer == 0L) {
             throw new ITLibException("Failed to initialize native Music.app library.");
         }
         if (LOG.isLoggable(Level.FINE)) {
             LOG.fine("Loading ITLibrary took " + (System.currentTimeMillis()-start) + "ms.");
         }
+        return pointer;
     }
 
-    private static native long init(final String version) throws Exception;
+    private static native long _init(final String version) throws Exception;
 
     private native String _getMusicFolderLocation();
 

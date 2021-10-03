@@ -23,13 +23,12 @@ import static com.tagtraum.jitlibrary.ITLibMediaItemPlayStatus.ITLibMediaItemPla
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  * @see <a href="https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem">Apple ITLibMediaItem</a>
  */
-public class ITLibMediaItem {
+public class ITLibMediaItem extends ReferenceCountedObject {
 
     private static final Logger LOG = Logger.getLogger(ITLibMediaItem.class.getName());
-    private final long pointer;
 
     public ITLibMediaItem(final long pointer) {
-        this.pointer = pointer;
+        super(pointer);
     }
 
     public native long getId();

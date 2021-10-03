@@ -35,27 +35,3 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1get
         return (jlong)[array objectAtIndex: index];
     }
 }
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArray
- * Method:    _release
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1release
-        (JNIEnv *env, jobject instance) {
-    NSArray *array = (NSArray *)getPointer(env, instance);
-    if (array != 0) {
-        [array release];
-    }
-}
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArray
- * Method:    _retain
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1retain
-        (JNIEnv *env, jobject instance) {
-    NSArray *array = (NSArray *)getPointer(env, instance);
-    [array retain];
-}

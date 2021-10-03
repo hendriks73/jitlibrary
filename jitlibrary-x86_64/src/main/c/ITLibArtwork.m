@@ -42,28 +42,3 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork__1getImageDataF
     ITLibArtwork *artwork = (ITLibArtwork *) getPointer(env, instance);
     return (jint)artwork.imageDataFormat;
 }
-
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArtwork
- * Method:    _release
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork__1release
-        (JNIEnv *env, jobject instance) {
-    ITLibArtwork *artwork = (ITLibArtwork *) getPointer(env, instance);
-    if (artwork != 0) {
-        [artwork release];
-    }
-}
-
-/*
- * Class:     com_tagtraum_jitlibrary_ITLibArtwork
- * Method:    _retain
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork__1retain
-        (JNIEnv *env, jobject instance) {
-    ITLibArtwork *artwork = (ITLibArtwork *) getPointer(env, instance);
-    [artwork retain];
-}

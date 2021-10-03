@@ -19,13 +19,12 @@ import java.util.logging.Logger;
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  * @see <a href="https://developer.apple.com/documentation/ituneslibrary/itlibartwork">Apple ITLibArtwork</a>
  */
-public class ITLibArtwork {
+public class ITLibArtwork extends ReferenceCountedObject {
 
     private static final Logger LOG = Logger.getLogger(ITLibArtwork.class.getName());
-    private long pointer;
 
     public ITLibArtwork(final long pointer) {
-        this.pointer = pointer;
+        super(pointer);
     }
 
     /**
@@ -76,22 +75,5 @@ public class ITLibArtwork {
     }
 
     public native int _getImageDataFormat();
-
-    private native void _release();
-
-    private native void _retain();
-
-    public void release() {
-        if (pointer != 0L) {
-            _release();
-            pointer = 0L;
-        }
-    }
-
-    public void retain() {
-        if (pointer != 0L) {
-            _retain();
-        }
-    }
 
 }
