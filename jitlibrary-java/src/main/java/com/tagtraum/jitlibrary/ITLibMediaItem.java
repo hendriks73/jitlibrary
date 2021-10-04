@@ -144,11 +144,7 @@ public class ITLibMediaItem extends ReferenceCountedObject {
 
     public ITLibArtwork getArtwork() {
         final long pointer = _getArtwork();
-        if (pointer != 0L) {
-            return new ITLibArtwork(pointer);
-        } else {
-            return null;
-        }
+        return pointer != 0L ? new ITLibArtwork(pointer) : null;
     }
 
     private native long _getArtwork();
@@ -203,11 +199,13 @@ public class ITLibMediaItem extends ReferenceCountedObject {
     private native int _getPlayStatus();
 
     public ITLibArtist getArtist() {
-        return new ITLibArtist(_getArtist());
+        final long pointer = _getArtist();
+        return pointer != 0L ? new ITLibArtist(pointer) : null;
     }
 
     public ITLibAlbum getAlbum() {
-        return new ITLibAlbum(_getAlbum());
+        final long pointer = _getAlbum();
+        return pointer != 0L ? new ITLibAlbum(pointer) : null;
     }
 
     public Object getProperty(final String propertyName) {

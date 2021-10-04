@@ -6,7 +6,10 @@
  */
 package com.tagtraum.jitlibrary;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * TestITLibArtwork.
@@ -15,9 +18,17 @@ import org.junit.jupiter.api.Test;
  */
 public class TestITLibArtwork {
 
+    @BeforeAll
+    public static void before() {
+        ITNativeLibraryLoader.loadLibrary();
+    }
+    
     @Test
     public void testDummy() {
         final ITLibArtwork nullArtwork = new ITLibArtwork(0L);
+        assertNull(nullArtwork.getImage());
+        assertArrayEquals(new byte[0], nullArtwork.getImageData());
+        assertEquals(ITLibArtworkFormat.ITLibArtworkFormatNone, nullArtwork.getImageDataFormat());
     }
 
 }

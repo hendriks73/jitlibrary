@@ -42,7 +42,8 @@ public class ITLibPlaylist extends ReferenceCountedObject {
     public native boolean isMaster();
 
     public ITLibMediaItems getItems() {
-        return new ITLibMediaItems(_getItems());
+        final long pointer = _getItems();
+        return pointer == 0L ? null : new ITLibMediaItems(pointer);
     }
 
     private native long _getItems();

@@ -1,6 +1,7 @@
 - 0.9.3
 
-  - Added extensive NULL checks in native code. 
+  - Added extensive NULL checks in native code
+  - Improved code test coverage 
 
 
 - 0.9.2

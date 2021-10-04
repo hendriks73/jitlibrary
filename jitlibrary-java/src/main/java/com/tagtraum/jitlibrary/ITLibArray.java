@@ -41,11 +41,11 @@ public class ITLibArray extends ReferenceCountedObject {
     private native long _get(final int index);
 
     public long get(final int index) {
-        if (pointer == 0L) {
-            throw new IllegalStateException("Array has already been released.");
-        }
         if (index < 0) {
             throw new IndexOutOfBoundsException("Index must be greater than zero: " + index);
+        }
+        if (pointer == 0L) {
+            throw new IllegalStateException("Array has already been released.");
         }
         if (index >= size) {
             throw new IndexOutOfBoundsException("Index must be less than size (" + this.size + "): " + index);
