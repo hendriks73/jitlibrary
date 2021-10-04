@@ -23,5 +23,6 @@ public enum ITLibArtworkFormat {
     ITLibArtworkFormatPNG,
     ITLibArtworkFormatBMP,
     ITLibArtworkFormatTIFF,
-    ITLibArtworkFormatPICT;
+    ITLibArtworkFormatPICT
+
 }
