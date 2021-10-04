@@ -18,7 +18,11 @@
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getId
         (JNIEnv *env, jobject instance) {
     ITLibMediaEntity *album = (ITLibMediaEntity *) getPointer(env, instance);
-    return getPersistentId(album);
+    if (album == NULL) {
+        return 0L;
+    } else {
+        return getPersistentId(album);
+    }
 }
 
 /*
@@ -28,7 +32,11 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getId
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getTitle
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, album.title);
+    if (album == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, album.title);
+    }
 }
 
 /*
@@ -39,7 +47,11 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getTitle
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getSortTitle
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, album.sortTitle);
+    if (album == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, album.sortTitle);
+    }
 }
 
 /*
@@ -50,7 +62,11 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getSortTitle
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getTrackCount
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jint)album.trackCount;
+    if (album == NULL) {
+        return 0;
+    } else {
+        return (jint)album.trackCount;
+    }
 }
 
 /*
@@ -61,7 +77,11 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getTrackCount
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getRating
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jint)album.rating;
+    if (album == NULL) {
+        return 0;
+    } else {
+        return (jint)album.rating;
+    }
 }
 
 /*
@@ -72,7 +92,11 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getRating
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isRatingComputed
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jboolean)album.ratingComputed;
+    if (album == NULL) {
+        return 0;
+    } else {
+        return (jint)album.ratingComputed;
+    }
 }
 
 /*
@@ -83,7 +107,11 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isRatingCompu
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isGapless
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jboolean)album.gapless;
+    if (album == NULL) {
+        return false;
+    } else {
+        return (jboolean)album.gapless;
+    }
 }
 
 /*
@@ -94,7 +122,11 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isGapless
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getDiscNumber
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jint)album.discNumber;
+    if (album == NULL) {
+        return 0;
+    } else {
+        return (jint)album.discNumber;
+    }
 }
 
 /*
@@ -105,7 +137,11 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getDiscNumber
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getDiscCount
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jint)album.discCount;
+    if (album == NULL) {
+        return 0;
+    } else {
+        return (jint)album.discCount;
+    }
 }
 
 /*
@@ -116,7 +152,11 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getDiscCount
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isCompilation
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return (jboolean)album.compilation;
+    if (album == NULL) {
+        return false;
+    } else {
+        return (jboolean)album.compilation;
+    }
 }
 
 /*
@@ -127,7 +167,11 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_isCompilation
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getAlbumArtist
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, album.albumArtist);
+    if (album == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, album.albumArtist);
+    }
 }
 
 /*
@@ -138,5 +182,9 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getAlbumArtist
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibAlbum_getSortAlbumArtist
         (JNIEnv *env, jobject instance) {
     ITLibAlbum *album = (ITLibAlbum *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, album.sortAlbumArtist);
+    if (album == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, album.sortAlbumArtist);
+    }
 }

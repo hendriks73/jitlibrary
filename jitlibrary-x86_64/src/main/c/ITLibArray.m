@@ -17,7 +17,11 @@
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1size
         (JNIEnv *env, jobject instance) {
     NSArray *array = (NSArray *)getPointer(env, instance);
-    return (jint)array.count;
+    if (array == NULL) {
+        return 0;
+    } else {
+        return (jint)array.count;
+    }
 }
 
 /*
@@ -28,7 +32,9 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1size
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1get
         (JNIEnv *env, jobject instance, jint index) {
     NSArray *array = (NSArray *)getPointer(env, instance);
-    if (index < 0 || index >= [array count]) {
+    if (array == NULL) {
+        return 0L;
+    } else if (index < 0 || index >= [array count]) {
         NSLog(@"Weird... array count = %lu. Returning 0L.", [array count]);
         return 0L;
     } else {
