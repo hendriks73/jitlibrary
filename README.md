@@ -10,8 +10,8 @@
 [iTunes Library Framework](https://developer.apple.com/documentation/ituneslibrary/itlibrary),
 which - despite its name - can also be used to access *Music.app* data.
 Note that the API is read-only, just like Apple's framework. For write access, 
-see [Obstmusic](https://github.com/hendriks73/obstmusic) or
-[Obstunes](https://github.com/hendriks73/obstunes).
+see [Obstmusic](https://github.com/japlscript/obstmusic) or
+[Obstunes](https://github.com/japlscript/obstunes).
 
 
 ## Important
@@ -89,7 +89,7 @@ jITLibrary uses `java.util.logging`.
 
 ## Known Shortcomings
 
-- Apple's code signing requirement sucks.
+- Apple's code signing requirement sucks
 - thread safety may be an issue
 - reloading data after changes my not be quick
 
@@ -104,6 +104,6 @@ You can find the complete
 
 - [iTunes Library Framework](https://developer.apple.com/documentation/ituneslibrary/itlibrary)
 - [Apple's Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html)
-- [Obstmusic](https://github.com/hendriks73/obstmusic)
-- [Obstunes](https://github.com/hendriks73/obstunes)
+- [Obstmusic](https://github.com/japlscript/obstmusic)
+- [Obstunes](https://github.com/japlscript/obstunes)
  
