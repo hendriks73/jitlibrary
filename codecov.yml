@@ -1,0 +1,6 @@
+ignore:
+  - jitlibrary-java/src/main/java/com/tagtraum/jitlibrary/ITLibArtworkFormat.java
+  - jitlibrary-java/src/main/java/com/tagtraum/jitlibrary/ITLibMediaItemLocationType.java
+  - jitlibrary-java/src/main/java/com/tagtraum/jitlibrary/ITLibMediaItemLyricsContentRating.java
+  - jitlibrary-java/src/main/java/com/tagtraum/jitlibrary/ITLibMediaItemPlayStatus.java
+  - jitlibrary-java/src/main/java/com/tagtraum/jitlibrary/ITLibPlaylistKind.java

@@ -7,16 +7,16 @@
 package com.tagtraum.jitlibrary;
 
 /**
- * ITLibException.
+ * ITLibRuntimeException.
  *
  * @author <a href="mailto:hs@tagtraum.com">Hendrik Schreiber</a>
  */
-public class ITLibException extends Exception {
+public class ITLibRuntimeException extends Exception {
 
-    public ITLibException() {
+    public ITLibRuntimeException() {
     }
 
-    public ITLibException(final String message) {
+    public ITLibRuntimeException(final String message) {
         super(message);
     }
 

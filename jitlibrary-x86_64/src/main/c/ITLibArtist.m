@@ -13,8 +13,15 @@
 
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getId
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaEntity *artist = (ITLibMediaEntity *) getPointer(env, instance);
-    return getPersistentId(artist);
+    if (artist == NULL) {
+        return 0L;
+    } else {
+        return getPersistentId(artist);
+    }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -23,8 +30,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getId
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getName
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibArtist *artist = (ITLibArtist *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, artist.name);
+    if (artist == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, artist.name);
+    }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -34,6 +48,13 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getName
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibArtist_getSortName
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibArtist *artist = (ITLibArtist *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, artist.sortName);
+    if (artist == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, artist.sortName);
+    }
+    EXIT(env)
+    return NULL;
 }

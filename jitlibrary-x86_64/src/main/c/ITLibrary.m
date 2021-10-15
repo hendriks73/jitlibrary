@@ -20,6 +20,7 @@
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1init
         (JNIEnv *env, jclass klass, jstring version) {
 
+    ENTER
     NSString *nsVersion = createNSStringFromJavaString(env, version);
     NSError *error = nil;
     ITLibrary *library = [ITLibrary libraryWithAPIVersion:nsVersion error:&error];
@@ -30,6 +31,8 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1init
         throwITLibException(env, [error localizedDescription], error);
         return 0L;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -39,8 +42,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1init
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMusicFolderLocation
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, library.musicFolderLocation.absoluteString);
+    if (library == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, library.musicFolderLocation.absoluteString);
+    }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -50,8 +60,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMusicFolde
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_isShowContentRating
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return (jboolean) library.showContentRating;
+    if (library == NULL) {
+        return false;
+    } else {
+        return (jboolean) library.showContentRating;
+    }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -61,8 +78,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_isShowContentR
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getApplicationVersion
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, library.applicationVersion);
+    if (library == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, library.applicationVersion);
+    }
+    EXIT(env)
+    return NULL;
 }
 
 
@@ -73,8 +97,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getApplicationV
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getAPIMinorVersion
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return (jint)library.apiMinorVersion;
+    if (library == NULL) {
+        return 0;
+    } else {
+        return (jint)library.apiMinorVersion;
+    }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -84,8 +115,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getAPIMinorVersion
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getAPIMajorVersion
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return (jint)library.apiMajorVersion;
+    if (library == NULL) {
+        return 0;
+    } else {
+        return (jint)library.apiMajorVersion;
+    }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -95,8 +133,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getAPIMajorVersion
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1reloadData
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return (jboolean)[library reloadData];
+    if (library == NULL) {
+        return false;
+    } else {
+        return (jboolean)[library reloadData];
+    }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -106,13 +151,17 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1reloadData
 JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1unloadData
         (JNIEnv *env, jobject instance) {
 
+    ENTER
     if (@available(macOS 10.14, *)) {
         ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-        [library unloadData];
+        if (library != NULL) {
+            [library unloadData];
+        }
     } else {
         // do nothing
         NSLog(@"WARNING: ITLibrary.unloadData is unavailable before macOS 10.14.");
     }
+    EXIT(env)
 }
 
 /*
@@ -121,13 +170,19 @@ JNIEXPORT void JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1unloadData
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1artworkForMediaFile
         (JNIEnv *env, jobject instance, jstring uri) {
-
-    // create NSUrl object
-    NSString *urlString = createNSStringFromJavaString(env, uri);
-    NSURL *nsURL = [NSURL URLWithString: urlString];
+    ENTER
     // get artwork pointer
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    return (jlong)[library artworkForMediaFile: nsURL];
+    if (library == NULL) {
+        return 0L;
+    } else {
+        // create NSUrl object
+        NSString *urlString = createNSStringFromJavaString(env, uri);
+        NSURL *nsURL = [NSURL URLWithString: urlString];
+        return (jlong)[library artworkForMediaFile: nsURL];
+    }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -137,23 +192,27 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1artworkForMedia
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMediaItem
   (JNIEnv *env, jobject instance, jlong mediaItemId) {
-    // get all media items
+    ENTER
+    // get a media item
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    NSArray<ITLibMediaItem *> *items = [library allMediaItems];
-    if (items.count == 0) {
-        // make sure the library is loaded...
-        [library reloadData];
-        items = [library allMediaItems];
-    }
-    // return just the one we are interested in
-    int i=0;
-    int count = items.count;
-    for (i=0; i<count; i++) {
-        ITLibMediaItem *item = [items objectAtIndex: i];
-        if (getPersistentId(item) == mediaItemId) {
-            return (jlong)item;
+    if (library != NULL) {
+        NSArray<ITLibMediaItem *> *items = [library allMediaItems];
+        if (items.count == 0) {
+            // make sure the library is loaded...
+            [library reloadData];
+            items = [library allMediaItems];
+        }
+        // return just the one we are interested in
+        int i=0;
+        int count = items.count;
+        for (i=0; i<count; i++) {
+            ITLibMediaItem *item = [items objectAtIndex: i];
+            if (getPersistentId(item) == mediaItemId) {
+                return (jlong)item;
+            }
         }
     }
+    EXIT(env)
     return 0L;
 }
 
@@ -164,16 +223,23 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMediaItem
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getAllMediaItems
         (JNIEnv *env, jobject instance) {
+    ENTER
 
     // get all media items
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    NSArray<ITLibMediaItem *> *items = [library allMediaItems];
-    if (items.count == 0) {
-        // make sure the library is loaded...
-        [library reloadData];
-        items = [library allMediaItems];
+    if (library == NULL) {
+        return 0L;
+    } else {
+        NSArray<ITLibMediaItem *> *items = [library allMediaItems];
+        if (items.count == 0) {
+            // make sure the library is loaded...
+            [library reloadData];
+            items = [library allMediaItems];
+        }
+        return (jlong)items;
     }
-    return (jlong)items;
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -183,15 +249,22 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getAllMediaItem
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getAllPlaylists
         (JNIEnv *env, jobject instance) {
-    // get all media items
+    ENTER
+    // get all playlists
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    NSArray<ITLibPlaylist *> *playlists = [library allPlaylists];
-    if (playlists.count == 0) {
-        // make sure the library is loaded...
-        [library reloadData];
-        playlists = [library allPlaylists];
+    if (library == NULL) {
+        return 0L;
+    } else {
+        NSArray<ITLibPlaylist *> *playlists = [library allPlaylists];
+        if (playlists.count == 0) {
+            // make sure the library is loaded...
+            [library reloadData];
+            playlists = [library allPlaylists];
+        }
+        return (jlong)playlists;
     }
-    return (jlong)playlists;
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -247,20 +320,27 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getLastItemModi
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMediaItemsChangedSince
         (JNIEnv *env, jobject instance, jlong time) {
-    NSMutableArray *changed = [NSMutableArray arrayWithCapacity: 100];
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
-    NSArray<ITLibMediaItem *> *items = [library allMediaItems];
-    if ([items count] > 0) {
-        for (ITLibMediaItem *item in items) {
-            NSDate * addedDate = item.addedDate;
-            NSDate * modifiedDate = item.modifiedDate;
-            NSDate * latest = [addedDate laterDate: modifiedDate];
-            if (latest.timeIntervalSince1970 * 1000. > time) {
-                [changed addObject: item];
+    if (library == NULL) {
+        return 0L;
+    } else {
+        NSMutableArray *changed = [NSMutableArray arrayWithCapacity: 100];
+        NSArray<ITLibMediaItem *> *items = [library allMediaItems];
+        if ([items count] > 0) {
+            for (ITLibMediaItem *item in items) {
+                NSDate * addedDate = item.addedDate;
+                NSDate * modifiedDate = item.modifiedDate;
+                NSDate * latest = [addedDate laterDate: modifiedDate];
+                if (latest.timeIntervalSince1970 * 1000. > time) {
+                    [changed addObject: item];
+                }
             }
         }
+        return (jlong)changed;
     }
-    return (jlong)changed;
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -270,6 +350,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getMediaItemsCh
  */
 JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getMediaItemIds
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
     NSArray<ITLibMediaItem *> *items = [library allMediaItems];
     jsize length = (jsize)[items count];
@@ -286,6 +367,8 @@ JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getMediaItem
     (*env)->SetLongArrayRegion(env, newLongArray, 0, length, ids);
     free(ids);
     return newLongArray;
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -295,6 +378,7 @@ JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getMediaItem
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibrary_getPlaylistHash
         (JNIEnv *env, jobject instance) {
+
     jint hash = 0;
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
     if (!library) {

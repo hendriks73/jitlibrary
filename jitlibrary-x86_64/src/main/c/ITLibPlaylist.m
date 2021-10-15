@@ -19,8 +19,15 @@
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getId
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return getPersistentId((ITLibMediaEntity*)playlist);
+    if (playlist == NULL) {
+        return 0L;
+    } else {
+        return getPersistentId((ITLibMediaEntity*)playlist);
+    }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -30,12 +37,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getId
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getParentId
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    if (playlist) {
-        return toPersistentId(playlist.parentID);
+    if (playlist == NULL) {
+        return 0L;
     } else {
-        return 0;
+        return toPersistentId(playlist.parentID);
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -45,8 +55,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getParentId
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_isVisible
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return (jboolean)playlist.visible;
+    if (playlist == NULL) {
+        return false;
+    } else {
+        return (jboolean)playlist.visible;
+    }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -56,8 +73,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_isVisible
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getName
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return createJavaStringFromNSString(env, playlist.name);
+    if (playlist == NULL) {
+        return NULL;
+    } else {
+        return createJavaStringFromNSString(env, playlist.name);
+    }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -67,8 +91,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getName
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_isMaster
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return (jboolean)playlist.master;
+    if (playlist == NULL) {
+        return false;
+    } else {
+        return (jboolean)playlist.master;
+    }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -78,10 +109,17 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_isMaster
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getItems
         (JNIEnv *env, jobject instance) {
+    ENTER
     // get all media items
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    NSArray<ITLibMediaItem *> *items = [playlist items];
-    return (jlong)items;
+    if (playlist == NULL) {
+        return 0L;
+    } else {
+        NSArray<ITLibMediaItem *> *items = [playlist items];
+        return (jlong)items;
+    }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -91,7 +129,11 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getItems
  */
 JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getItemsIds
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
+    if (playlist == NULL) {
+        return (*env)->NewLongArray(env, 0);
+    }
     NSArray<ITLibMediaItem *> *items = [playlist items];
     jsize length = (jsize)[items count];
     jlong *ids = malloc(sizeof(jlong) * length);
@@ -107,6 +149,8 @@ JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getItems
     (*env)->SetLongArrayRegion(env, newLongArray, 0, length, ids);
     free(ids);
     return newLongArray;
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -116,8 +160,15 @@ JNIEXPORT jlongArray JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist_getItems
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getDistinguishedKind
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return (jint)playlist.distinguishedKind;
+    if (playlist == NULL) {
+        return (jint)ITLibDistinguishedPlaylistKindNone;
+    } else {
+        return (jint)playlist.distinguishedKind;
+    }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -127,6 +178,13 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getDistingui
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibPlaylist__1getKind
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibPlaylist *playlist = (ITLibPlaylist *) getPointer(env, instance);
-    return (jint)playlist.kind;
+    if (playlist == NULL) {
+        return (jint)ITLibPlaylistKindRegular;
+    } else {
+        return (jint)playlist.kind;
+    }
+    EXIT(env)
+    return 0;
 }

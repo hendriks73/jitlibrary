@@ -1,3 +1,10 @@
+- 0.9.3
+
+  - Added extensive NULL checks in native code
+  - Added safety try/catch in native code
+  - Improved code test coverage 
+
+
 - 0.9.2
 
   - Fixed class lookup in native code

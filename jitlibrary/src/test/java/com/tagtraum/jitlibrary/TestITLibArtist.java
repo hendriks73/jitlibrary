@@ -6,7 +6,11 @@
  */
 package com.tagtraum.jitlibrary;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * TestITLibArtist.
@@ -15,9 +19,17 @@ import org.junit.jupiter.api.Test;
  */
 public class TestITLibArtist {
 
+    @BeforeAll
+    public static void before() {
+        ITNativeLibraryLoader.loadLibrary();
+    }
+
     @Test
     public void testDummy() {
         final ITLibArtist nullArtist = new ITLibArtist(0L);
+        assertNull(nullArtist.getName());
+        assertNull(nullArtist.getSortName());
+        assertSame(0L, nullArtist.getId());
     }
 
 }
