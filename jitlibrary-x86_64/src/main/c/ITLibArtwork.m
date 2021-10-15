@@ -17,6 +17,7 @@
  */
 JNIEXPORT jbyteArray JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork_getImageData
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibArtwork *artwork = (ITLibArtwork *) getPointer(env, instance);
     if (artwork == NULL) return (*env)->NewByteArray(env, 0);
 
@@ -33,6 +34,8 @@ JNIEXPORT jbyteArray JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork_getImageD
     } else {
         return (*env)->NewByteArray(env, 0);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -41,10 +44,13 @@ JNIEXPORT jbyteArray JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork_getImageD
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArtwork__1getImageDataFormat
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibArtwork *artwork = (ITLibArtwork *) getPointer(env, instance);
     if (artwork == NULL) {
         return (jint)ITLibArtworkFormatNone;
     } else {
         return (jint)artwork.imageDataFormat;
     }
+    EXIT(env)
+    return 0;
 }

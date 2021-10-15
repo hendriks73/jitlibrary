@@ -16,12 +16,15 @@
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getId
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return getPersistentId((ITLibMediaEntity*)item);
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -30,12 +33,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getId
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTitle
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.title);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -44,12 +50,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTitle
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSortTitle
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.sortTitle);
     }
+    EXIT(env)
+    return NULL;
 }
 
 
@@ -59,12 +68,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSortTit
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getArtist
         (JNIEnv *env, jobject instance)  {
-   ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
+    ENTER
+    ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
        return (jlong)item.artist;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -73,12 +85,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getArtist
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getAlbum
         (JNIEnv *env, jobject instance)  {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jlong)item.album;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -87,12 +102,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getAlbum
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getComposer
         (JNIEnv *env, jobject instance)  {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.composer);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -101,12 +119,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getCompose
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSortComposer
         (JNIEnv *env, jobject instance)  {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.sortComposer);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -115,12 +136,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSortCom
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getRating
         (JNIEnv *env, jobject instance)  {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.rating;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -130,12 +154,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getRating
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isRatingComputed
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.ratingComputed;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -145,12 +172,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isRatingC
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getStartTime
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.startTime;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -160,12 +190,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getStartTime
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getStopTime
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.stopTime;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -174,12 +207,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getStopTime
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getGenre
         (JNIEnv *env, jobject instance)  {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.genre);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -189,12 +225,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getGenre
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getKind
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.kind);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -204,12 +243,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getKind
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getMediaKind
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return (jint)ITLibMediaItemMediaKindUnknown;
     } else {
         return (jint)item.mediaKind;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -219,12 +261,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getMediaKin
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLyricsContentRating
   (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return (jint)ITLibMediaItemLyricsContentRatingNone;
     } else {
         return (jint)item.lyricsContentRating;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -234,12 +279,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLyricsCo
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTotalTime
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jlong)item.totalTime;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -249,12 +297,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTotalTime
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTrackNumber
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.trackNumber;
     }
+    EXIT(env)
+    return 0;
 }
 
 
@@ -265,12 +316,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getTrackNumbe
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getCategory
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.category);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -280,12 +334,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getCategor
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getDescription
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.description);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -295,12 +352,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getDescrip
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getContentRating
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.contentRating);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -310,6 +370,7 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getContent
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getAddedDate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
@@ -317,6 +378,8 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getAddedDa
         NSDate *date = item.addedDate;
         return date ? (jlong)(date.timeIntervalSince1970 * 1000.) : 0;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -326,6 +389,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getAddedDa
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getModifiedDate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
@@ -333,6 +397,8 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getModifie
         NSDate *date = item.modifiedDate;
         return date ? (jlong)(date.timeIntervalSince1970 * 1000.) : 0;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -342,12 +408,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getModifie
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getBitRate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.bitrate;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -357,12 +426,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getBitRate
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSampleRate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.sampleRate;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -372,12 +444,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSampleRate
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getBeatsPerMinute
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.beatsPerMinute;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -387,12 +462,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getBeatsPerMi
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getPlayCount
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.playCount;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -402,6 +480,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getPlayCount
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLastPlayedDate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
@@ -409,6 +488,8 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLastPla
         NSDate *date = item.lastPlayedDate;
         return date ? (jlong)(date.timeIntervalSince1970 * 1000.) : 0;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -418,6 +499,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLastPla
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocation
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
@@ -425,6 +507,8 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocat
         NSURL *location = item.location;
         return createJavaStringFromNSString(env, location.absoluteString);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -434,12 +518,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocat
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocationType
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return (jint)ITLibMediaItemLocationTypeUnknown;
     } else {
         return (jint)item.locationType;
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -449,12 +536,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocation
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isArtworkAvailable
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.artworkAvailable;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -464,12 +554,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isArtwork
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getArtwork
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jlong)item.artwork;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -479,12 +572,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getArtwork
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getComments
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.comments);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -494,12 +590,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getComment
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isPurchased
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.purchased;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -509,12 +608,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isPurchas
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isDRMProtected
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.drmProtected;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -524,12 +626,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isDRMProt
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_hasVideo
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.video;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -539,9 +644,12 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_hasVideo
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getReleaseDate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     NSDate *date = item.releaseDate;
     return date ? (jlong)(date.timeIntervalSince1970 * 1000.) : 0;
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -551,12 +659,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getRelease
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getYear
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.year;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -566,12 +677,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getYear
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSkipCount
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0;
     } else {
         return (jint)item.skipCount;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -581,6 +695,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getSkipCount
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getSkipDate
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
@@ -588,6 +703,8 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getSkipDat
         NSDate *date = item.skipDate;
         return date ? (jlong)(date.timeIntervalSince1970 * 1000.) : 0;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -597,12 +714,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getSkipDat
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getVolumeAdjustment
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jint)item.volumeAdjustment;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -612,12 +732,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getVolumeAdju
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getVolumeNormalizationEnergy
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jint)item.volumeNormalizationEnergy;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -627,12 +750,15 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getVolumeNorm
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isUserDisabled
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.userDisabled;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -642,12 +768,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isUserDis
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getGrouping
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return NULL;
     } else {
         return createJavaStringFromNSString(env, item.grouping);
     }
+    EXIT(env)
+    return NULL;
 }
 
 /*
@@ -657,12 +786,15 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getGroupin
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getFileSize
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return 0L;
     } else {
         return (jlong)item.fileSize;
     }
+    EXIT(env)
+    return 0L;
 }
 
 /*
@@ -672,12 +804,15 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_getFileSize
  */
 JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isCloud
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return false;
     } else {
         return (jboolean)item.cloud;
     }
+    EXIT(env)
+    return false;
 }
 
 /*
@@ -687,12 +822,15 @@ JNIEXPORT jboolean JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem_isCloud
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getPlayStatus
         (JNIEnv *env, jobject instance) {
+    ENTER
     ITLibMediaItem *item = (ITLibMediaItem *) getPointer(env, instance);
     if (item == NULL) {
         return (jint)ITLibMediaItemPlayStatusNone;
     } else {
         return (jint)item.playStatus;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -702,6 +840,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getPlayStat
  */
 JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getProperty
         (JNIEnv *env, jobject instance, jstring name) {
+    ENTER
     ITLibMediaEntity *entity = (ITLibMediaEntity *) getPointer(env, instance);
     if (entity == NULL) {
         return NULL;
@@ -713,5 +852,7 @@ JNIEXPORT jstring JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getPrope
         jvalue = createJavaStringFromNSString(env, [value description]);
     }
     return jvalue;
+    EXIT(env)
+    return NULL;
 }
 

@@ -16,12 +16,15 @@
  */
 JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1size
         (JNIEnv *env, jobject instance) {
+    ENTER
     NSArray *array = (NSArray *)getPointer(env, instance);
     if (array == NULL) {
         return 0;
     } else {
         return (jint)array.count;
     }
+    EXIT(env)
+    return 0;
 }
 
 /*
@@ -31,6 +34,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1size
  */
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1get
         (JNIEnv *env, jobject instance, jint index) {
+    ENTER
     NSArray *array = (NSArray *)getPointer(env, instance);
     if (array == NULL) {
         return 0L;
@@ -40,4 +44,6 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibArray__1get
     } else {
         return (jlong)[array objectAtIndex: index];
     }
+    EXIT(env)
+    return 0L;
 }
