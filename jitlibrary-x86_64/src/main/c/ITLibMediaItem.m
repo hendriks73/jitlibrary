@@ -526,7 +526,7 @@ JNIEXPORT jint JNICALL Java_com_tagtraum_jitlibrary_ITLibMediaItem__1getLocation
         return (jint)item.locationType;
     }
     EXIT(env)
-    return NULL;
+    return 0;
 }
 
 /*
