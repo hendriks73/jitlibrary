@@ -1,5 +1,10 @@
 - 0.9.3
 
+  - Added signature to packaged `dylib` 
+
+
+- 0.9.3
+
   - Added extensive NULL checks in native code
   - Added safety try/catch in native code
   - Improved code test coverage 
