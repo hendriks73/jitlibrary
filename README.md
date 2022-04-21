@@ -46,8 +46,6 @@ with the name `tagtraum.jitlibrary`.
 
 ## Usage
 
-[Reference](https://hendriks73.github.io/japlscript/com/tagtraum/japlscript/Reference.html)
-
 Once you have obtained an [ITLibrary](https://hendriks73.github.io/jitlibrary/com/tagtraum/jitlibrary/ITLibrary.html)
 instance you may access its `ITMediaItem`s and `ITPlaylist`s as you like.
 
