@@ -275,7 +275,7 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getAllPlaylists
 JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getLastItemModification
         (JNIEnv *env, jobject instance) {
     jlong time = 0;
-    NSDate *latest = nil;
+    NSDate *latest = [NSDate distantPast];
     ITLibrary *library = (ITLibrary *) getPointer(env, instance);
     if (!library) {
         throwITLibException(env, @"Failed get last modification date. No library.", nil);
@@ -287,18 +287,13 @@ JNIEXPORT jlong JNICALL Java_com_tagtraum_jitlibrary_ITLibrary__1getLastItemModi
             if ([items count] > 0) {
                 NSArray *c = [items copy];
                 for (ITLibMediaItem *item in c) {
+                    NSDate *playedDate = item.lastPlayedDate;
                     NSDate *addedDate = item.addedDate;
                     NSDate *modifiedDate = item.modifiedDate;
-                    if (latest && addedDate) {
-                        latest = [addedDate laterDate: latest];
-                    } else if (addedDate && !latest) {
-                        latest = addedDate;
-                    }
-                    if (latest && modifiedDate) {
-                        latest = [modifiedDate laterDate: latest];
-                    } else if (modifiedDate && !latest) {
-                        latest = modifiedDate;
-                    }
+                    if (!playedDate) playedDate = [NSDate distantPast];
+                    if (!addedDate) addedDate = [NSDate distantPast];
+                    if (!modifiedDate) modifiedDate = [NSDate distantPast];
+                    latest = [modifiedDate laterDate: [playedDate laterDate: [addedDate laterDate: latest]]];
                 }
                 [c release];
                 time = latest ? (jlong)(latest.timeIntervalSince1970 * 1000.) : 0;

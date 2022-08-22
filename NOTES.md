@@ -1,3 +1,8 @@
+- 0.9.5
+
+  - Consider *played date* in `ITLibrary.getLastItemModification()` call 
+
+
 - 0.9.4
 
   - Added signature to packaged `dylib` 
