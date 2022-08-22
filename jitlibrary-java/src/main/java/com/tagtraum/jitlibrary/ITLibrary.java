@@ -293,7 +293,7 @@ public class ITLibrary extends ReferenceCountedObject {
     public native long[] getMediaItemIds();
 
     /**
-     * Greatest addition or modification date for any items in the library.
+     * Greatest last played, addition or modification date for any items in the library.
      * May be {@code null}, if we cannot determine the date.
      *
      * @return date or null
