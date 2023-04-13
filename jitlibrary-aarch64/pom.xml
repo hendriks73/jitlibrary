@@ -21,6 +21,7 @@
         </dependency>
     </dependencies>
     <properties>
+        <arch>arm64</arch>
         <target>MAC</target>
     </properties>
     <build>

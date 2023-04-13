@@ -1,6 +1,7 @@
 - 0.9.5
 
-  - Consider *played date* in `ITLibrary.getLastItemModification()` call 
+  - Consider *played date* in `ITLibrary.getLastItemModification()` call
+  - Fixed arm64/Apple silicon dylib
 
 
 - 0.9.4
