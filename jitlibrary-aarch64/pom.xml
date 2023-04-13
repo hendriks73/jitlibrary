@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.tagtraum</groupId>
         <artifactId>jitlibrary-parent</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>jitlibrary-aarch64</artifactId>
@@ -21,6 +21,7 @@
         </dependency>
     </dependencies>
     <properties>
+        <arch>arm64</arch>
         <target>MAC</target>
     </properties>
     <build>
