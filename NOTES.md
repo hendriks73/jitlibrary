@@ -1,3 +1,8 @@
+- 0.9.6
+
+  - Handle `com-apple-unresolvable-file-reference-url` more gracefully
+
+
 - 0.9.5
 
   - Consider *played date* in `ITLibrary.getLastItemModification()` call

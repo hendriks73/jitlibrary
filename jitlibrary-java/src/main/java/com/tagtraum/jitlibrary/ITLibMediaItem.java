@@ -114,15 +114,20 @@ public class ITLibMediaItem extends ReferenceCountedObject {
     private native long _getLastPlayedDate();
 
     public URI getLocation() {
-        final String location = _getLocation();
+        String location = _getLocation();
         if (location == null) {
             return null;
         } else {
+            final String originalLocation = location;
+            if (location.startsWith("com-apple-unresolvable-file-reference-url:")) {
+                if (LOG.isLoggable(Level.FINE)) LOG.fine("Found location: " + location + ". Replacing scheme com-apple-unresolvable-file-reference-url: with file:");
+                location = location.replaceFirst("com-apple-unresolvable-file-reference-url:", "file:");
+            }
             try {
                 return new URI(location);
             } catch (URISyntaxException e) {
-                LOG.log(Level.SEVERE, e.toString(), e);
-                throw new RuntimeException(e);
+                LOG.log(Level.SEVERE, "Failed to create URI from \"" + originalLocation + "\". Returning null", e);
+                return null;
             }
         }
     }
