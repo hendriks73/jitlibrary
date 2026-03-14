@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.tagtraum</groupId>
         <artifactId>jitlibrary-parent</artifactId>
-        <version>0.9.5</version>
+        <version>0.9.6</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>jitlibrary-x86_64</artifactId>
@@ -89,7 +89,7 @@
                                             <arg value="-vvv" />
                                             <arg value="--force" />
                                             <arg value="--sign" />
-                                            <arg value="Developer ID Application: tagtraum industries incorporated (MW4Y4W5V4P)" />
+                                            <arg value="Developer ID Application: Jalulo UG (haftungsbeschrankt) (2J6368YSP2)" />
                                             <arg value="${project.build.directory}/${project.artifactId}.dylib" />
                                         </exec>
                                     </target>

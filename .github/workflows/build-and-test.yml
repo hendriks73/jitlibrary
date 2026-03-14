@@ -17,13 +17,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-10.15, macos-latest ]
-        java: [ 9, 11, 15, 17 ]
+        os: [ macos-15, macos-latest ]
+        java: [ 9, 11, 15, 17, 21 ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Set up Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           cache: 'maven'
@@ -33,13 +33,14 @@ jobs:
       - name: Build/test code with Maven
         run: mvn -B install --file pom.xml
       - run: mkdir staging && cp jitlibrary/target/*.jar staging
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v6
         with:
           name: Package
           path: staging
+        if: matrix.os == 'macos-latest' && matrix.java == 9
 
       - name: Upload CodeCov Report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-        if: matrix.os == 'macos-10.15' && matrix.java == 9
+        if: matrix.os == 'macos-latest' && matrix.java == 9

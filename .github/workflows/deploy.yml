@@ -15,7 +15,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-10.15
+    runs-on: macos-latest
 
     steps:
       - id: install-secret-keys
@@ -30,26 +30,25 @@ jobs:
           security import certificate.p12 -k build.keychain -P "${{ secrets.MACOS_CERTIFICATE_PWD }}" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k my_secret build.keychain
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 9
-          architecture: x64
+          java-version: 21
+          architecture: aarch64
           cache: 'maven'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       - id: publish-to-central
         name: Publish to Central Repository
+        shell: bash
         env:
-          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
-          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
