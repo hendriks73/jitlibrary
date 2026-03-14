@@ -5,6 +5,7 @@
   - Moved to Jalulo UG
   - Updated GitHub actions
 
+
 - 0.9.5
 
   - Consider *played date* in `ITLibrary.getLastItemModification()` call
