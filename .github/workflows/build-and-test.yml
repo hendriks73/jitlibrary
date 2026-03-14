@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         os: [ macos-15, macos-latest ]
-        java: [ 9, 11, 15, 17 ]
+        java: [ 9, 11, 15, 17, 21 ]
 
     steps:
       - uses: actions/checkout@v6
