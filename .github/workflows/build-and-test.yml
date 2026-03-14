@@ -37,6 +37,7 @@ jobs:
         with:
           name: Package
           path: staging
+        if: matrix.os == 'macos-latest' && matrix.java == 9
 
       - name: Upload CodeCov Report
         uses: codecov/codecov-action@v5
