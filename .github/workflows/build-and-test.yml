@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-10.15, macos-latest ]
+        os: [ macos-15, macos-latest ]
         java: [ 9, 11, 15, 17 ]
 
     steps:
@@ -33,13 +33,13 @@ jobs:
       - name: Build/test code with Maven
         run: mvn -B install --file pom.xml
       - run: mkdir staging && cp jitlibrary/target/*.jar staging
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v6
         with:
           name: Package
           path: staging
 
       - name: Upload CodeCov Report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-        if: matrix.os == 'macos-10.15' && matrix.java == 9
+        if: matrix.os == 'macos-latest' && matrix.java == 9
