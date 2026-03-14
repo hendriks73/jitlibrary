@@ -3,6 +3,7 @@
   - Handle `com-apple-unresolvable-file-reference-url` more gracefully
   - Updated maven plugins
   - Moved to Jalulo UG
+  - Updated GitHub actions
 
 - 0.9.5
 
